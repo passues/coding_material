@@ -1,4 +1,4 @@
-###Environment Setup
+### Environment Setup
 
 #### brew
 please install the following stuff
@@ -38,4 +38,20 @@ To clean the object file
 
 ```
 make clean
+```
+
+### Debug
+
+run
+```
+lldb  main_exe
+```
+
+you can set up break point use 
+```
+b test.cpp:10
+```
+then type
+```
+r
 ```
