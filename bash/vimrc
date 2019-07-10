@@ -1,6 +1,5 @@
 set nocompatible              " required
 filetype off                  " required
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -9,6 +8,9 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
+Plugin 'flazz/vim-colorschemes'
+Plugin 'vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
@@ -22,24 +24,29 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'gruvbox'
-Plugin 'Conque-Shell'
-
+Plugin 'skywind3000/asyncrun.vim'
 " YouCompleteMe
 Plugin 'Valloric/YouCompleteMe'
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-py3 << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
-
+Plugin 'majutsushi/tagbar'
+Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-misc'
+Plugin 'wincent/command-t'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
+
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_use_clangd = 0
+" asycnrun
+let g:asyncrun_open = 1
+" 任务结束时候响铃提醒
+let g:asyncrun_bell = 1
+" 设置 F10 打开/关闭 Quickfix 窗口
+nnoremap <C-m> :call asyncrun#quickfix_toggle(15)<cr>
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nmap <F8> :TagbarToggle<CR>
 filetype plugin indent on    " required
 
 syntax on
@@ -51,8 +58,11 @@ set nolist
 set autoindent
 set smartindent
 set smarttab
-set expandtab
-filetype indent plugin on
+set tabstop=8
+set shiftwidth=4
+set noexpandtab 
+
+" filetype indent plugin on
 
 " cursor settings
 :autocmd InsertEnter * set cul
@@ -112,5 +122,10 @@ autocmd StdinReadPre * let s:std_in=utocmd VimEnter * if argc() == 0 && !exists(
 map <C-n> :NERDTreeToggle<CR>
 
 " colorscheme
-colorscheme gruvbox
+colorscheme wombat256
+""colorscheme gruvbox
+"colorscheme molokai
 set background=dark
+let g:airline_theme='badwolf'
+set bs=2
+set hlsearch
