@@ -1,0 +1,3 @@
+SparseMatrix.o: src/SparseMatrix.cpp src/SparseMatrix.h \
+ src/SparseMatrix.cpp
+test.o: src/test.cpp src/SparseMatrix.h src/SparseMatrix.cpp
